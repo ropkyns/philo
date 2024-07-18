@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/07/16 11:23:21 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:43:19 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef struct s_philo
 	t_fork		*lfork;
 	t_fork		*rfork;
 	pthread_t	thrd_id;
-}					t_philo;
+	t_data		*table;
+}				t_philo;
 
-struct s_data
+typedef struct s_data
 {
 	long	nbr_philo;
 	long	t_to_die;
@@ -53,8 +54,8 @@ struct s_data
 	bool	end_sim;
 	t_fork	*forks;
 	t_philo	*philos;
+}				t_data;
 
-};
-
+void	error_exit(const char *str_error);
 
 #endif

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/07/18 16:59:36 by paulmart         ###   ########.fr       */
+/*   Created: 2024/07/18 16:37:08 by paulmart          #+#    #+#             */
+/*   Updated: 2024/07/18 16:42:33 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	arg_init(t_data *data, char *argv)
+void	error_exit(const char *str_error)
 {
-	data->nbr_philo = ft_atol(argv[1]);
+	printf("%s\n", str_error);
+	exit(EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv)
-{
-	t_data	data;
-
-	if (argc == 6 | argc == 5)
-	{
-
-	}
-	else
-		error_exit("wrong intput\nTry for exemple ./philo 5 800 200 200 [5]");
-	return (0);
-}
