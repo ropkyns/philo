@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/07/18 16:43:19 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:33:02 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,26 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
+#include <errno.h>
 
-typedef pthread_mutex_t	t_mutex;
+typedef enum	e_opcode
+{
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH,
+}			t_opcode;
+
+typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
-	t_mutex	fork;
+	t_mtx	fork;
 	int		fork_index;
 }				t_fork;
 
@@ -57,5 +69,8 @@ typedef struct s_data
 }				t_data;
 
 void	error_exit(const char *str_error);
+long	ft_atol(const char *str);
+void	arg_init(t_data *data, char **argv);
+void	*malloc_checked(size_t bytes);
 
 #endif

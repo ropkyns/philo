@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:59:49 by paulmart          #+#    #+#             */
-/*   Updated: 2024/07/18 17:27:40 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:55:23 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,15 @@ const char	*valid_input(const char *str)
 	if (*str == '+')
 		str++;
 	else if (*str == '-')
-		error_exit("can't get negative numbere");
+		error_exit("Can't get negative numbere");
 	if (!is_digit(*str))
-		error_exit("input is an invalid digit");
+		error_exit("Input is an invalid digit");
 	nbr = str;
-	
+	while (is_digit(*str++))
+		len++;
+	if (len > 10)
+		error_exit("Value too big");
+	return(nbr);
 }
 
 long	ft_atol(const char *str)
@@ -45,5 +49,10 @@ long	ft_atol(const char *str)
 	long	nb;
 
 	nb = 0;
-	
+	str = valid_input(str);
+	while (is_digit(*str))
+		nb = (nb * 10) + (*str++ - 48);
+	if (nb > INT_MAX)
+		error_exit("Value too big");
+	return (nb);	
 }
