@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/07/21 16:10:01 by palu             ###   ########.fr       */
+/*   Updated: 2024/09/02 14:05:55 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	if (argc == 6 | argc == 5)
 	{
 		arg_init(&data, argv);
-		data_init(&data);//todo
+		data_init(&data);
 		dinner_start(&data);//todo
 		clean(&data);//todo
 	}
