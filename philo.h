@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/09/02 16:25:47 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:48:04 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 # include <sys/time.h>
 # include <limits.h>
 # include <errno.h>
+
+typedef enum e_status
+{
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	DIED,
+}			t_philo_status;
 
 typedef enum e_opcode
 {
@@ -73,6 +83,7 @@ typedef struct s_data
 	bool	end_sim;
 	bool	all_threads_ready;
 	t_mtx	table_mutex;
+	t_mtx	write_mutex;
 	t_fork	*forks;
 	t_philo	*philos;
 }				t_data;
@@ -88,7 +99,7 @@ static void	handle_mutex_error(int status, t_opcode opcode);
 static void	handle_threads_error(int status, t_opcode opcode);
 void		thread_handled(pthread_t *thread, void *(*foo)(void *),
 				void *data_t, t_opcode opcode);
-				
+
 void		data_init(t_data *data);
 
 void		set_long(t_mtx *mutex, long *dest, long *value);
@@ -97,7 +108,10 @@ bool		get_bool(t_mtx *mutex, bool *value);
 void		set_bool(t_mtx *mutex, bool *dest, bool value);
 bool		simulation_finished(t_data *data);
 
-void	wait_all_threads(t_data *data);
+void		wait_all_threads(t_data *data);
+
+long		gettime(t_time_code time_code);
+void		precise_usleep(long usec, t_data *data);
 
 
 #endif

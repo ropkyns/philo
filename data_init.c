@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:11:15 by palu              #+#    #+#             */
-/*   Updated: 2024/09/02 15:00:04 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:56:01 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	data_init(t_data *data)
 	data->end_sim = false;
 	data->philos = malloc_checked(sizeof(t_philo) * data->nbr_philo);
 	mutex_handled(&data->table_mutex, INIT);
+	mutex_handled(&data->write_mutex, INIT);
 	data->forks = malloc_checked(sizeof(t_fork) * data->nbr_philo);
 	while (data->nbr_philo > ++i)
 	{

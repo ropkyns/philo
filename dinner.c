@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:14:34 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/02 16:02:28 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:12:55 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,16 @@ void	*dinner_simulation(void *data_sim)
 
 	philo = (t_philo *)data_sim;
 	wait_all_threads(philo->table);
-
+	while (!simulation_finished(philo->table))
+	{
+		if (philo->max_dinner)
+			break ;
+		eat (philo);
+		
+		sleep;
+		
+		thinking(philo);
+	}
 	return (NULL);
 }
 
@@ -34,8 +43,13 @@ void	dinner_start(t_data *data)
 	else
 	{
 		while (data->nbr_philo > ++i)
-			safe_thread_handle(&data->philos[i].thrd_id, dinner_simulation,
+			thread_handled(&data->philos[i].thrd_id, dinner_simulation,
 				&data->philos[i], CREATE);
 	}
+	data->start_sim = gettime(MILLISECOND);
 	set_bool(&data->table_mutex, &data->all_threads_ready, true);
+	i = -1;
+	while (data->nbr_philo > ++i)
+		thread_handled(data->philos[i].thrd_id, NULL, NULL, JOIN);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/09/02 14:05:55 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:52:02 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	arg_init(t_data *data, char **argv)
 {
 	data->nbr_philo = ft_atol(argv[1]);
-	data->t_to_die = ft_atol(argv[2]) * 1e3;
 	data->t_to_eat = ft_atol(argv[3]) * 1e3;
 	data->t_to_sleep = ft_atol(argv[4]) * 1e3;
 	if (data->t_to_die < 6e4
