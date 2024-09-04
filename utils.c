@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:59:49 by paulmart          #+#    #+#             */
-/*   Updated: 2024/07/21 15:55:23 by palu             ###   ########.fr       */
+/*   Updated: 2024/09/04 11:53:11 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ const char	*valid_input(const char *str)
 	const char	*nbr;
 
 	len = 0;
-	while(is_space(str))
+	while (is_space(*str))
 		str++;
 	if (*str == '+')
 		str++;
@@ -41,7 +41,7 @@ const char	*valid_input(const char *str)
 		len++;
 	if (len > 10)
 		error_exit("Value too big");
-	return(nbr);
+	return (nbr);
 }
 
 long	ft_atol(const char *str)
@@ -54,5 +54,5 @@ long	ft_atol(const char *str)
 		nb = (nb * 10) + (*str++ - 48);
 	if (nb > INT_MAX)
 		error_exit("Value too big");
-	return (nb);	
+	return (nb);
 }

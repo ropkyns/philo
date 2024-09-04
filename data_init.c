@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:11:15 by palu              #+#    #+#             */
-/*   Updated: 2024/09/03 14:56:01 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:07:43 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	philo_init(t_data *data)
 		philo->max_dinner = false;
 		philo->number_dinner = 0;
 		philo->table = data;
-		assign_forks(philo, data->forks, i);
+		mutex_handled(&philo->philo_mutex, INIT);
+		assign_fork(philo, data->forks, i);
 	}
 }
 
@@ -49,6 +50,8 @@ void	data_init(t_data *data)
 
 	i = -1;
 	data->end_sim = false;
+	data->all_threads_ready = false;
+	data->threads_running_nbr = 0;
 	data->philos = malloc_checked(sizeof(t_philo) * data->nbr_philo);
 	mutex_handled(&data->table_mutex, INIT);
 	mutex_handled(&data->write_mutex, INIT);

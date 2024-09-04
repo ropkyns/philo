@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:25:18 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/02 14:33:40 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:40:47 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	thread_handled(pthread_t *thread, void *(*foo)(void *),
 	void *data_t, t_opcode opcode)
 {
 	if (opcode == CREATE)
-		handle_thread_error(pthread_create(thread, NULL, foo, data_t), opcode);
+		handle_threads_error(pthread_create(thread, NULL, foo, data_t), opcode);
 	else if (opcode == JOIN)
-		handle_thread_error(pthread_join(*thread, NULL), opcode);
+		handle_threads_error(pthread_join(*thread, NULL), opcode);
 	else if (opcode == DETACH)
-		handle_thread_error(pthread_detach(*thread), opcode);
+		handle_threads_error(pthread_detach(*thread), opcode);
 	else
 		error_exit("Wrong opcode for thread_handle:"
 			" use <CREATE> <JOIN> <DETACH>");

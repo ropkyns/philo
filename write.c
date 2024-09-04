@@ -6,11 +6,30 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:36:09 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/03 15:28:27 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:41:32 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	write_status_debug(t_philo_status status, t_philo *philo, long elapsed)
+{
+	if (status == TAKE_FIRST_FORK && !simulation_finished(philo->table))
+		printf("%-6ld %d has taken the first fork (id : %d)\n", elapsed,
+			philo->index, philo->first_fork->fork_index);
+	else if (status == TAKE_SECOND_FORK && !simulation_finished(philo->table))
+		printf("%-6ld %d has taken the second fork (id : %d)\n", elapsed,
+			philo->index, philo->second_fork->fork_index);
+	else if (status == EATING && !simulation_finished(philo->table))
+		printf("%-6ld %d is eating (meal nb : %ld)\n", elapsed,
+			philo->index, philo->number_dinner);
+	else if (status == SLEEPING && !simulation_finished(philo->table))
+		printf("%-6ld %d is sleeping\n", elapsed, philo->index);
+	else if (status == THINKING && !simulation_finished(philo->table))
+		printf("%-6ld %d is thinking\n", elapsed, philo->index);
+	else if (status == DIED)
+		printf("%-6ld %d died\n", elapsed, philo->index);
+}
 
 void	write_status(t_philo_status status, t_philo *philo, bool debug)
 {
@@ -32,7 +51,7 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug)
 		else if (status == SLEEPING && !simulation_finished(philo->table))
 			printf("%-6ld %d is sleeping\n", elapsed, philo->index);
 		else if (status == THINKING && !simulation_finished(philo->table))
-			printf("%-6ld %d is thinking\n",elapsed, philo->index);
+			printf("%-6ld %d is thinking\n", elapsed, philo->index);
 		else if (status == DIED)
 			printf("%-6ld %d died\n", elapsed, philo->index);
 	}
