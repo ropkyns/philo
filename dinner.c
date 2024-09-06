@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:14:34 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/05 15:07:43 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/06 19:29:41 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	*dinner_simulation(void *data_sim)
 		if (philo->max_dinner)
 			break ;
 		eat (philo);
-
 		write_status(SLEEPING, philo, DEBUG_MODE);
 		precise_usleep(philo->table->t_to_sleep, philo->table);
 
@@ -90,6 +89,7 @@ void	dinner_start(t_data *data)
 	}
 	thread_handled(&data->monitor, monitor_dinner, data, CREATE);
 	data->start_sim = gettime(MILLISECOND);
+	printf("\n%ld\n", data->start_sim);
 	set_bool(&data->table_mutex, &data->all_threads_ready, true);
 	i = -1;
 	while (data->nbr_philo > ++i)

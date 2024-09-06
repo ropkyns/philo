@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/09/04 17:08:24 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:25:31 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <limits.h>
 # include <errno.h>
-# define DEBUG_MODE 1
+# define DEBUG_MODE 0
 
 typedef enum e_status
 {
@@ -119,7 +119,6 @@ void		wait_all_threads(t_data *data);
 bool		all_threads_running(t_mtx *mutex, long *threads, long philo_nbr);
 void		increase_long(t_mtx *mutex, long *value);
 
-
 long		gettime(t_time_code time_code);
 void		precise_usleep(long usec, t_data *data);
 
@@ -128,6 +127,8 @@ void		write_status_debug(t_philo_status status, t_philo *philo,
 				long elapsed);
 
 void		*monitor_dinner(void *data);
+
+void		clean(t_data *data);
 
 
 #endif

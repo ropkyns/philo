@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/09/04 12:02:45 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:45:55 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int argc, char **argv)
 	{
 		arg_init(&data, argv);
 		data_init(&data);
-		dinner_start(&data);//todo
-		/* clean(&data);//todo */
+		dinner_start(&data);
+		clean(&data);
 	}
 	else
 		error_exit("wrong intput\nTry for exemple ./philo 5 800 200 200 [5]");
