@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:16:31 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/04 11:45:22 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:31:18 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ long	get_long(t_mtx *mutex, long *value)
 	mutex_handled(mutex, LOCK);
 	ret = *value;
 	mutex_handled(mutex, UNLOCK);
+	return (ret);
 }
 
 void	set_long(t_mtx *mutex, long *dest, long value)

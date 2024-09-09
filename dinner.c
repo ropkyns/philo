@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:14:34 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/06 19:29:41 by palu             ###   ########.fr       */
+/*   Updated: 2024/09/09 16:06:46 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	*dinner_simulation(void *data_sim)
 		eat (philo);
 		write_status(SLEEPING, philo, DEBUG_MODE);
 		precise_usleep(philo->table->t_to_sleep, philo->table);
-
 		thinking(philo);
 	}
+	printf("%ld\n", philo->last_meal_time);
 	return (NULL);
 }
 

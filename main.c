@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/09/06 17:45:55 by palu             ###   ########.fr       */
+/*   Updated: 2024/09/09 12:34:27 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	arg_init(t_data *data, char **argv)
 {
 	data->nbr_philo = ft_atol(argv[1]);
-	printf("%ld\n", data->nbr_philo);
 	data->t_to_die = ft_atol(argv[2]) * 1e3;
-	printf("%ld\n", data->t_to_die);
 	data->t_to_eat = ft_atol(argv[3]) * 1e3;
-	printf("%ld\n", data->t_to_eat);
 	data->t_to_sleep = ft_atol(argv[4]) * 1e3;
-	printf("%ld\n", data->t_to_sleep);
 	if (data->t_to_die < 6e4
 		|| data->t_to_eat < 6e4
 		|| data->t_to_sleep < 6e4)

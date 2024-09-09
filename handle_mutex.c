@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:24:14 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/02 14:32:41 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:44:03 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_mutex_error(int status, t_opcode opcode)
 {
 	if (status == 0)
 		return ;
-	if (status == EINVAL && (opcode == LOCK || opcode == UNLOCK 
+	if (status == EINVAL && (opcode == LOCK || opcode == UNLOCK
 			|| opcode == DESTROY))
 		error_exit("The value specified by mutex is invalid.");
 	else if (status == EINVAL && opcode == INIT)
