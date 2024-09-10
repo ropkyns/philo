@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:49:07 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/04 16:24:27 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:39:48 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,18 @@ void	increase_long(t_mtx *mutex, long *value)
 	mutex_handled(mutex, LOCK);
 	(*value)++;
 	mutex_handled(mutex, UNLOCK);
+}
+
+void	desynchronize(t_philo *philo)
+{
+	if (philo->table->nbr_philo % 2 == 0)
+	{
+		if (philo->index % 2 == 0)
+			precise_usleep(3e4, philo->table);
+	}
+	else
+	{
+		if (philo->index % 2)
+			thinking(philo, true);
+	}
 }

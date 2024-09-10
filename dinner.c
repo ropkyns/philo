@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:14:34 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/09 16:06:46 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:48:30 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,22 @@ void	*lone_philo(void *arg)
 	return (NULL);
 }
 
-static void	thinking(t_philo *philo)
+void	thinking(t_philo *philo, bool pre_sim)
 {
-	write_status(THINKING, philo, DEBUG_MODE);
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	if (!pre_sim)
+		write_status(THINKING, philo, DEBUG_MODE);
+	if (philo->table->nbr_philo % 2 == 0)
+		return ;
+	t_eat = philo->table->t_to_eat;
+	t_sleep = philo->table->t_to_sleep;
+	t_think = (t_eat * 2) - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	precise_usleep(t_think * 0.42, philo->table);
 }
 
 static void	eat(t_philo *philo)
@@ -58,6 +71,7 @@ void	*dinner_simulation(void *data_sim)
 	set_long(&philo->philo_mutex, &philo->last_meal_time, gettime(MILLISECOND));
 	increase_long(&philo->table->table_mutex,
 		&philo->table->threads_running_nbr);
+	desynchronize(philo);
 	while (!simulation_finished(philo->table))
 	{
 		if (philo->max_dinner)
@@ -65,9 +79,8 @@ void	*dinner_simulation(void *data_sim)
 		eat (philo);
 		write_status(SLEEPING, philo, DEBUG_MODE);
 		precise_usleep(philo->table->t_to_sleep, philo->table);
-		thinking(philo);
+		thinking(philo, false);
 	}
-	printf("%ld\n", philo->last_meal_time);
 	return (NULL);
 }
 
@@ -89,9 +102,10 @@ void	dinner_start(t_data *data)
 	}
 	thread_handled(&data->monitor, monitor_dinner, data, CREATE);
 	data->start_sim = gettime(MILLISECOND);
-	printf("\n%ld\n", data->start_sim);
 	set_bool(&data->table_mutex, &data->all_threads_ready, true);
 	i = -1;
 	while (data->nbr_philo > ++i)
 		thread_handled(&data->philos[i].thrd_id, NULL, NULL, JOIN);
+	set_bool(&data->table_mutex, &data->end_sim, true);
+	thread_handled(&data->monitor, NULL, NULL, JOIN);
 }

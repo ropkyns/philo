@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/09/06 18:25:31 by palu             ###   ########.fr       */
+/*   Updated: 2024/09/10 15:39:21 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void		data_init(t_data *data);
 
 void		dinner_start(t_data *data);
 void		*dinner_simulation(void *data_sim);
+void		thinking(t_philo *philo, bool pre_sim);
+static void	eat(t_philo *philo);
+void		*lone_philo(void *arg);
 
 void		set_long(t_mtx *mutex, long *dest, long value);
 long		get_long(t_mtx *mutex, long *value);
@@ -121,6 +124,7 @@ void		increase_long(t_mtx *mutex, long *value);
 
 long		gettime(t_time_code time_code);
 void		precise_usleep(long usec, t_data *data);
+void		desynchronize(t_philo *philo);
 
 void		write_status(t_philo_status status, t_philo *philo, bool debug);
 void		write_status_debug(t_philo_status status, t_philo *philo,
