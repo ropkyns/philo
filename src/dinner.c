@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:14:34 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/10 15:48:30 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:38:59 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*dinner_simulation(void *data_sim)
 	{
 		if (philo->max_dinner)
 			break ;
-		eat (philo);
+		eat(philo);
 		write_status(SLEEPING, philo, DEBUG_MODE);
 		precise_usleep(philo->table->t_to_sleep, philo->table);
 		thinking(philo, false);

@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:59:49 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/09 10:54:09 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:38:00 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ const char	*valid_input(const char *str)
 	if (*str == '+')
 		str++;
 	else if (*str == '-')
-		error_exit("Can't get negative numbere");
+		return (printf("Can't get negative numbere"), NULL);
 	if (!is_digit(*str))
-		error_exit("Input is an invalid digit");
+		return (printf("Input is an invalid digit"), NULL);
 	nbr = str;
 	while (is_digit(*str++))
 		len++;
 	if (len > 10)
-		error_exit("Value too big");
+		return (printf("Value too big"), NULL);
 	return (nbr);
 }
 
@@ -50,10 +50,12 @@ long	ft_atol(const char *str)
 
 	nb = 0;
 	str = valid_input(str);
+	if (str == NULL)
+		return (-1);
 	while (is_digit(*str))
 		nb = (nb * 10) + (*str++ - 48);
 	if (nb > INT_MAX)
-		error_exit("Value too big");
+		return (printf("Value too big"), -1);
 	return (nb);
 }
 

@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:11:15 by palu              #+#    #+#             */
-/*   Updated: 2024/09/04 16:07:43 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:28:11 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	philo_init(t_data *data)
 	}
 }
 
-void	data_init(t_data *data)
+int	data_init(t_data *data)
 {
 	int		i;
 
@@ -52,14 +52,19 @@ void	data_init(t_data *data)
 	data->end_sim = false;
 	data->all_threads_ready = false;
 	data->threads_running_nbr = 0;
-	data->philos = malloc_checked(sizeof(t_philo) * data->nbr_philo);
+	data->philos = malloc(sizeof(t_philo) * data->nbr_philo);
+	if (data->philos == NULL)
+		return (-1);
 	mutex_handled(&data->table_mutex, INIT);
 	mutex_handled(&data->write_mutex, INIT);
-	data->forks = malloc_checked(sizeof(t_fork) * data->nbr_philo);
+	data->forks = malloc(sizeof(t_fork) * data->nbr_philo);
+	if (!data->forks)
+		return (-1);
 	while (data->nbr_philo > ++i)
 	{
 		mutex_handled(&data->forks[i].fork, INIT);
 		data->forks[i].fork_index = i;
 	}
 	philo_init(data);
+	return (0);
 }

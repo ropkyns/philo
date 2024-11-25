@@ -6,26 +6,31 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/09/09 12:34:27 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:37:00 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	arg_init(t_data *data, char **argv)
+int	arg_init(t_data *data, char **argv)
 {
 	data->nbr_philo = ft_atol(argv[1]);
 	data->t_to_die = ft_atol(argv[2]) * 1e3;
 	data->t_to_eat = ft_atol(argv[3]) * 1e3;
 	data->t_to_sleep = ft_atol(argv[4]) * 1e3;
 	if (data->t_to_die < 6e4
-		|| data->t_to_eat < 6e4
-		|| data->t_to_sleep < 6e4)
-		error_exit("Timer need to be bigger than 60ms");
+		|| data->t_to_eat < 6e4 || data->t_to_sleep < 6e4
+		|| data->nbr_philo == -1)
+		return (printf("Timer need to be bigger than 60ms"), -1);
 	if (argv[5])
+	{
 		data->limit_meals = ft_atol(argv[5]);
+		if (data->limit_meals == -1)
+			return (-1);
+	}
 	else
 		data->limit_meals = -1;
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -34,12 +39,15 @@ int	main(int argc, char **argv)
 
 	if (argc == 6 | argc == 5)
 	{
-		arg_init(&data, argv);
-		data_init(&data);
+		if (arg_init(&data, argv) == -1)
+			return (1);
+		if (data_init(&data) == -1)
+			return (clean(&data), 1);
 		dinner_start(&data);
 		clean(&data);
 	}
 	else
-		error_exit("wrong intput\nTry for exemple ./philo 5 800 200 200 [5]");
+		return (printf("wrong intput\nTry for exemple ./philo 5 800 200 200 [5]")
+			, 1);
 	return (0);
 }

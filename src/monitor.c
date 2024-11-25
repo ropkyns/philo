@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:01:16 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/09 15:36:02 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:55:39 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*monitor_dinner(void *data_monitor)
 	data = (t_data *)data_monitor;
 	while (!all_threads_running(&data->table_mutex,
 			&data->threads_running_nbr, data->nbr_philo))
-		;
+		usleep(1);
 	while (!simulation_finished(data))
 	{
 		i = -1;

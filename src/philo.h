@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:36 by palu              #+#    #+#             */
-/*   Updated: 2024/09/10 15:39:21 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:43:26 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,23 @@ typedef struct s_data
 	t_philo		*philos;
 }				t_data;
 
-void		error_exit(const char *str_error);
 long		ft_atol(const char *str);
-void		arg_init(t_data *data, char **argv);
-void		*malloc_checked(size_t bytes);
+const char	*valid_input(const char *str);
+bool		is_space(char c);
+bool		is_digit(char c);
+
+int			arg_init(t_data *data, char **argv);
 
 void		mutex_handled(t_mtx	*mutex, t_opcode opcode);
-static void	handle_mutex_error(int status, t_opcode opcode);
 
-static void	handle_threads_error(int status, t_opcode opcode);
 void		thread_handled(pthread_t *thread, void *(*foo)(void *),
 				void *data_t, t_opcode opcode);
 
-void		data_init(t_data *data);
+int			data_init(t_data *data);
 
 void		dinner_start(t_data *data);
 void		*dinner_simulation(void *data_sim);
 void		thinking(t_philo *philo, bool pre_sim);
-static void	eat(t_philo *philo);
 void		*lone_philo(void *arg);
 
 void		set_long(t_mtx *mutex, long *dest, long value);
@@ -133,6 +132,5 @@ void		write_status_debug(t_philo_status status, t_philo *philo,
 void		*monitor_dinner(void *data);
 
 void		clean(t_data *data);
-
 
 #endif
