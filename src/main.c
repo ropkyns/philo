@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:02:23 by palu              #+#    #+#             */
-/*   Updated: 2024/11/25 12:37:00 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:29:13 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc == 6 | argc == 5)
+	if ((argc == 6) | (argc == 5))
 	{
 		if (arg_init(&data, argv) == -1)
 			return (1);
