@@ -6,7 +6,7 @@
 #    By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 12:31:15 by paulmart          #+#    #+#              #
-#    Updated: 2024/12/16 12:10:07 by paulmart         ###   ########.fr        #
+#    Updated: 2024/12/16 12:14:23 by paulmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror
 
 NAME			= philo
-
 
 all:			$(NAME)	
 
