@@ -6,7 +6,7 @@
 /*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:49:07 by paulmart          #+#    #+#             */
-/*   Updated: 2024/09/10 15:39:48 by paulmart         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:44:01 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	wait_all_threads(t_data *data)
 {
 	while (!get_bool(&data->table_mutex, &data->all_threads_ready))
-		;
+		usleep(1);
 }
 
 bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr)

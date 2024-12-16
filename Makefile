@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: palu <palu@student.42.fr>                  +#+  +:+       +#+         #
+#    By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 12:31:15 by paulmart          #+#    #+#              #
-#    Updated: 2024/11/25 20:52:36 by palu             ###   ########.fr        #
+#    Updated: 2024/12/16 11:43:58 by paulmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS			= $(SRCS:.c=.o)
 HEADER			= philo.h
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -std=gnu99
+CFLAGS			= -Wall -Wextra -Werror
 
 NAME			= philo
 
